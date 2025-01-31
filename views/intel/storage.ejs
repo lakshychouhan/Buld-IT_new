@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/select.css">
+    <title>CPU-Storage</title>
+</head>
+<body>
+    <div class="heading">
+        <h1>Choose Storage</h1>
+    </div>
+    <div class="search-box">
+        <input type="text" id="search" name="search" placeholder="Search Component">
+        <input type="button" id="search-exec"  value="search" onclick="filter()">
+    </div>
+    <% storage.internal_hard_drive.forEach(element => { %>
+        <div class="listing">
+            <li><a href="storage/<%= element.brand %> <%= element.model%>/ram"><%= element.brand %> <%= element.model%></a></li>
+            <% if(element.price[1]!="0.00"){ %>
+                <p class="price">₹<%= Math.round(Math.round(parseFloat(element.price[1])*74.3)) %> </p>
+            <% }else{ %>
+                <p class="price">Price: NA</p>
+            <% } %>
+            <p class="details">Capacity: <%= element.capacity.total/1000000000 %> GB <%= element.storage_type %></p>
+        </div>
+    <% }); %> 
+</body>
+<script src="/images/search.js"></script>
+</html>

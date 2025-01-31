@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/select.css">
+    <title>Choose CPU-Coolers</title>
+</head>
+<body>
+    <div class="heading">
+        <h1>Choose a CPU cooler:</h1>
+    </div>
+    <div class="search-box">
+        <input type="text" id="search" name="search" placeholder="Search Component">
+        <input type="button" id="search-exec"  value="search" onclick="filter()">
+    </div>
+    <% coolers.cpu_cooler.forEach(element => { %>
+        <div class="listing">
+            <li><a href="coolers/<%= element.brand %> <%= element.model %>/storage"><%= element.brand %> <%= element.model %></a></li>
+            <% if(element.price[1]!="0.00"){ %>
+                <p class="price">₹<%= Math.round(Math.round(parseFloat(element.price[1])*74.3)) %> </p>
+            <% }else{ %>
+                <p class="price">Price: NA</p>
+            <% } %> 
+        </div>
+    <% }); %> 
+</body>
+<script src="/images/search.js"></script>
+</html>
