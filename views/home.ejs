@@ -8,9 +8,196 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/home.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .topbar {
+            background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        .flex-container-left {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-name {
+            position: relative;
+        }
+
+        .product-name a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-name h3 {
+            font-size: 1.8rem;
+            margin: 0;
+            background: linear-gradient(45deg, #8A2BE2, #4B0082);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .product-name h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #8A2BE2, transparent);
+        }
+
+        .elements {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .txt-space {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .txt-space a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .txt-space h3 {
+            margin: 0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .txt-space:hover h3 {
+            color: #8A2BE2;
+            transform: translateY(-2px);
+        }
+
+        .txt-space::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #8A2BE2;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .txt-space:hover::after {
+            width: 80%;
+        }
+
+        .active {
+            background: rgba(138,43,226,0.1);
+            border-radius: 20px;
+        }
+
+        .active h3 {
+            color: #8A2BE2;
+        }
+
+        .build-sec {
+            text-align: center;
+            padding: 7rem 2rem 2rem;
+        }
+
+        .build-pictx {
+            margin-bottom: 2rem;
+        }
+
+        .build-pictx h1 {
+            margin-top: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .pre-cust-sec {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .pc-option {
+            width: 300px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .pc-option:hover {
+            transform: scale(1.05);
+        }
+
+        .pc-option img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .about-us {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            margin-top: 2rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            color: #8A2BE2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .build-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: #463C6F;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .build-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -41,29 +228,27 @@
             </div>
         </nav>
     </header>
-    <br><br><br>
-    <section>
-        <div class="build-sec">
-            <div class="build-pictx">
-                <a> <img src="images/NZXT PC.png" alt="MOBILE GAMERS ARE NOT REAL GAMERS" class="mainpic"></a>
-                <span><h1>Finding perfect match to your desktop needs made easy</h1></span>
-            </div>
-            <div>
-                <input type="image" src="images/BYO Button.png" width="500px" onclick="location.href='./build'" name="Build Your Own">
-            </div>
-        </div>   
-    </section>
-    <br><br>
-    <section class="pre-cust-sec">
-        <div>
-            <a href="/prebuild"><img src="images/prebuilds.png" alt="Console gamers suck too" class="image_cust_doc"></a>
+
+    <section class="build-sec">
+        <div class="build-pictx">
+            <h1>Finding perfect match to your desktop needs made easy</h1>
         </div>
-        <div class="vl"><br></div>
-        <div class="hl">
-            <a href="/doc"><img src="images/documentation.png" alt="Console gamers suck too" class="image_cust_doc"></a>
+        <div class="pre-cust-sec">
+            <a href="/prebuild" class="pc-option">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mid-end1-removebg-preview-JHZ14H9XqeT9gnnf3u4OqmkekV5hqG.png" alt="Mid-Range Gaming PC">
+            </a>
+            <a href="/prebuild" class="pc-option">
+                <img src="../images/low-end1-removebg-preview.png" alt="Entry-Level Gaming PC">
+            </a>
+            <a href="/prebuild" class="pc-option">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ehigh_end-removebg-preview-0nnkU3dBTgjKie4LJzysHWHTBnfuYX.png" alt="High-End Gaming PC">
+            </a>
         </div>
+        <button class="build-button" onclick="location.href='./build'">
+            Build Your Own
+        </button>
     </section>
-    <br><br>
+
     <section class="about-us">
         <div class="about-content">
             <h2>About Us</h2>
@@ -72,22 +257,6 @@
             <p>Join us today and start building the PC you've always wanted!</p>
         </div>
     </section>
-    
-    <!-- Contact Us Section
-    <section class="contact-us">
-        <h2>Contact Us</h2>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="40">
-            </a>
-            <a href="https://www.linkedin.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2013.svg" alt="LinkedIn" width="40">
-            </a>
-            <a href="https://www.facebook.com" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="40">
-            </a>
-        </div>
-    </section> -->
-
 </body>
 </html>
+

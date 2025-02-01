@@ -4,25 +4,120 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/build-start.css">
-    <title>Start Build</title>
+    <title>Choose Your Path</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+            background: #000 url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/21zhvq.jpg-VSN2gr9JmdPFFtSJpEwDvFgrmQqops.jpeg') no-repeat center center;
+            background-size: cover;
+            color: #00ff00;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .heading h1 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 3rem;
+        }
+
+        .contents {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .option img {
+            width: 80px;
+            height: 80px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.5));
+        }
+
+        .option:first-child img {
+            filter: drop-shadow(0 0 10px rgba(0, 0, 255, 0.5));
+        }
+
+        .option:last-child img {
+            filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
+        }
+
+        .option img:hover {
+            transform: scale(1.2);
+        }
+
+        .options h1 {
+            font-size: 2rem;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .pill-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pill-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .pill-container:hover::before {
+            opacity: 0.5;
+        }
+
+        .blue-pill::before {
+            background-color: rgba(0, 0, 255, 0.2);
+            border-radius: 50%;
+        }
+
+        .red-pill::before {
+            background-color: rgba(255, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="heading">
-            <h1>Choose a CPU</h1>
+            <h1>Choose Your Path</h1>
         </div>
         <div class="contents">
             <div class="option">
-                <a href="/amd/cpu"><img src="../images/AMD.jpg" alt=""></a>
+                <a href="/intel/cpu" class="pill-container blue-pill">
+                    <img src="../images/intel.jpg" alt="Intel CPU">
+                </a>
             </div>
             <div class="options">
                 <h1>OR</h1>
             </div>
             <div class="option">
-                <a href="/intel/cpu"><img src="../images/intel.jpg" alt=""></a>
+                <a href="/amd/cpu" class="pill-container red-pill">
+                    <img src="../images/AMD.jpg" alt="AMD CPU">
+                </a>
             </div>
         </div>
     </div>
 </body>
 </html>
+
