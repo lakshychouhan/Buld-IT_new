@@ -1,47 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/styles/select.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Motherboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Motherboard - Build-IT</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .topbar {
+      background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .flex-container-left {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-name a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .product-name h3 {
+      font-size: 1.8rem;
+      margin: 0;
+      background: linear-gradient(45deg, #8A2BE2, #4B0082);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .product-name h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #8A2BE2, transparent);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 6rem auto 2rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    .search-container {
+      margin-bottom: 2rem;
+    }
+    .search-box {
+      width: 50%;
+      padding: 1rem;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      margin-right: 1rem;
+    }
+    .select-btn {
+      background: #463C6F;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .select-btn:hover {
+      transform: scale(1.05);
+    }
+    .mbd-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .mbd-card {
+      background: rgba(255,255,255,0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .mbd-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(138,43,226,0.3);
+    }
+    .mbd-card h3 {
+      color: #8A2BE2;
+      margin-bottom: 0.5rem;
+    }
+    .mbd-card h3 a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .mbd-card p {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
-        <div class="heading">
-            <h1>Choose a Motherboard</h1>
-        </div>
-        <div class="search-box">
-            <input type="text" id="search" name="search" placeholder="Search Component">
-            <input type="button" id="search-exec"  value="search" onclick="filter()">
-        </div>
-        <% mbds.motherboard.forEach(element => { %>
-            <% if(selcpu.includes("Core i7-8") || selcpu.includes("Core i5-8") || selcpu.includes("Core i3-8") || selcpu.includes("Core i7-9") || selcpu.includes("Core i5-9") || selcpu.includes("Core i3-9") || selcpu.includes("Core i9-9")){ %>
-                <% if(element.socket=="LGA1151"  && !element.model.includes("/")){ %>
-                    <div class="listing"> 
-                        <li><a href="motherboards/<%= element.brand%> <%= element.model %>/gpu"><%= element.brand %> <%= element.model %></a></li>
-                        <% if(element.price[1]!="0.00"){ %>
-                            <p class="price">₹<%= Math.round(Math.round(parseFloat(element.price[1])*74.3)) %> </p>
-                        <% }else{ %>
-                            <p class="price">Price NA</p>
-                        <% } %>
-                        <p class="details">Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total/1000000000 %> GB, Colour: <%= element.color %> </p>
-                    </div>
-            <% }}}); %>
+  <header>
+    <nav class="topbar">
+      <div class="flex-container-left">
+        <span class="product-name centre-txt">
+          <a href="/">
+            <h3>Build<span style="color: white;">-IT</span></h3>
+          </a>
+        </span>
+      </div>
+    </nav>
+  </header>
 
-            <% mbds.motherboard.forEach(element => { %>
-                <% if(selcpu.includes("Core i7-10") || selcpu.includes("Core i5-10") || selcpu.includes("Core i9-10") ){ %>
-                    <% if(element.socket=="LGA1200"  && !element.model.includes("/")){ %>
-                        <div class="listing"> 
-                            <li><a href="motherboards/<%= element.brand%> <%= element.model %>/gpu"><%= element.brand %> <%= element.model %></a></li>
-                            <% if(element.price[1]!="0.00"){ %>
-                                <p class="price">₹<%= Math.round(Math.round(parseFloat(element.price[1])*74.3)) %> </p>
-                            <% }else{ %>
-                                <p class="price">Price NA</p>
-                            <% } %>
-                            <p class="details">Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total/1000000000 %> GB, Colour: <%= element.color %> </p>
-                        </div>
-                <% }}}); %>
+  <div class="container">
+    <h1>Choose a Motherboard</h1>
+    <div class="search-container">
+      <input type="text" id="search" class="search-box" placeholder="Search Component">
+      <input type="button" id="search-exec" class="select-btn" value="Search" onclick="filter()">
+    </div>
+
+    <div class="mbd-list" id="search-elements">
+      <% mbds.motherboard.forEach(element => { %>
+        <% if (selcpu.includes("Core i7-8") || selcpu.includes("Core i5-8") || selcpu.includes("Core i3-8") || selcpu.includes("Core i7-9") || selcpu.includes("Core i5-9") || selcpu.includes("Core i3-9") || selcpu.includes("Core i9-9")) { %>
+          <% if (element.socket == "LGA1151" && !element.model.includes("/")) { %>
+            <div class="mbd-card">
+              <h3>
+                <a href="motherboards/<%= element.brand %> <%= element.model %>/gpu">
+                  <%= element.brand %> <%= element.model %>
+                </a>
+              </h3>
+              <% if (element.price[1] != "0.00") { %>
+                <p class="price">₹<%= Math.round(parseFloat(element.price[1]) * 74.3) %></p>
+              <% } else { %>
+                <p class="price">Price NA</p>
+              <% } %>
+              <p class="details">
+                Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total / 1000000000 %> GB, Colour: <%= element.color %>
+              </p>
+              <button class="select-btn">Select</button>
+            </div>
+          <% } %>
+        <% } %>
+      <% }); %>
+
+      <% mbds.motherboard.forEach(element => { %>
+        <% if (selcpu.includes("Core i7-10") || selcpu.includes("Core i5-10") || selcpu.includes("Core i9-10")) { %>
+          <% if (element.socket == "LGA1200" && !element.model.includes("/")) { %>
+            <div class="mbd-card">
+              <h3>
+                <a href="motherboards/<%= element.brand %> <%= element.model %>/gpu">
+                  <%= element.brand %> <%= element.model %>
+                </a>
+              </h3>
+              <% if (element.price[1] != "0.00") { %>
+                <p class="price">₹<%= Math.round(parseFloat(element.price[1]) * 74.3) %></p>
+              <% } else { %>
+                <p class="price">Price NA</p>
+              <% } %>
+              <p class="details">
+                Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total / 1000000000 %> GB, Colour: <%= element.color %>
+              </p>
+              <button class="select-btn">Select</button>
+            </div>
+          <% } %>
+        <% } %>
+      <% }); %>
+    </div>
+  </div>
+
+  <script>
+    function filter() {
+      var input = document.getElementById('search');
+      var filter = input.value.toUpperCase();
+      var mbdList = document.getElementById('search-elements');
+      var mbdCards = mbdList.getElementsByClassName('mbd-card');
+
+      for (var i = 0; i < mbdCards.length; i++) {
+        var a = mbdCards[i].getElementsByTagName('a')[0];
+        var txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          mbdCards[i].style.display = "block";
+        } else {
+          mbdCards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
-<script src="/images/search.js"></script>
 </html>
