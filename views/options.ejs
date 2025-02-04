@@ -41,19 +41,31 @@
         </div>
         </nav>
     </header>
-
+    
+    
     
     <div class="background">
         
         <div class="btalign">
-            <button type="button" class="Button" ><a href="#highend" style="color: white; text-decoration: none;">High End</a></button>
-            <button type="button" class="Button" ><a href="#midend" style="color: white; text-decoration: none;">Mid Tier</a></button>
-            <button type="button" class="Button" ><a href="#lowend" style="color: white; text-decoration: none;">Low End</a></button>
+            <button type="button" class="Button" data-target="highend" ><a href="#highend"  style="color: white; text-decoration: none;">High End</a></button>
+            <button type="button" class="Button"  data-target="midend"><a href="#midend"  style="color: white; text-decoration: none;">Mid Tier</a></button>
+            <button type="button" class="Button" data-target="lowend"><a href="#lowend"  style="color: white; text-decoration: none;">Low End</a></button>
             </div>
             
     </section>
     <section class="divline">
     </div>
+    <script>
+        document.querySelectorAll('.btalign .Button').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 
     <section>
         <div id="highend" class="centre">

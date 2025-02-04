@@ -1,200 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap");
 
-*{
-    margin: 0px;
-    padding: 0px;
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.topbar{
-    background-color: rgb(0, 0, 0);
-    line-height: 6.7vh;
-    font-size: 15px;
-    font-style: normal;
-    color: white;
-    margin:0px;
-    padding: 0px;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;       
-}
-.elements a{
-    color: white;
-    text-decoration: none;
-    padding: 0px;
-    margin: 0px;
-}
-.elements span:hover{
-    margin-left: 5px;
-    margin-right: 5px;
-    background-color: rgb(60, 62, 143);
-    border-radius: 20px;
-}
-.elements .active{
-    margin-left: 5px;
-    margin-right: 5px;
-    background-color: rgb(60, 62, 143);
-    border-radius: 20px;
-}
-.flex-container-left{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: 40px;
-    
-}
-.flex-container-right{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: space-between;
-    padding-right: 5%;    
-    
-}
-header{
-    display: inline;
-}
-.txt-space{
-    padding-left: 25px; 
-    padding-right: 25px;
-}
-.product-name{
-    font-size: 25px;   
-    font-family: 'Jetbrains Mono',monospace;
-    font-weight: bolder;
-    color: rgb(134, 136, 255);
-}
-.centre-txt{
-    display: flex;
-    align-items: center;
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+  font-family: "JetBrains Mono", monospace;
 }
 
-.build-sec{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
+.topbar {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(70, 60, 111, 0.95));
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 15px rgba(138, 43, 226, 0.2);
+  backdrop-filter: blur(8px);
 }
 
-
-
-
-
-.container{
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    
+.flex-container-left {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.index{
-    width: auto;
-    height: 92vh;
-    margin: 1.1vw;
-    padding: 1.1vw;
-    overflow-y: auto;
-    border: 2px solid black;
-    
-    border-radius: 15px;
-    display: flex;
-    justify-content: left;
-    position: sticky;
-    left: 1vw;
-    top: 2vh;
+.product-name a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
-
-
-
-
-.background{
-    margin-top: 0;
-    padding: 0;
-    background-image: url('/images/nzxt-pc-build-sale.jpg');
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: #22054941;
-    background-blend-mode: multiply;
+.product-name h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  background: linear-gradient(45deg, #8a2be2, #4b0082);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
 }
 
-.Button{
-    padding: 20px;
-    padding-left: 60px;
-    padding-right: 60px;
-    margin: 20px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 50vh;
-    font-size: 35px;
-    border-radius: 20px;
-    border: 2px;
-    font-weight: 800;
-    border-color: rgba(255, 255, 255, 0.322);
-    border-style: solid;
-    color: rgb(255, 0, 21);
-    background-color: rgba(35, 8, 83, 0.9);
-    font-family: 'JetBrains Mono', monospace;
+.product-name h3::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8a2be2, transparent);
 }
-.Button:hover{
-    background-image: url('https://c.tenor.com/lnHy5A_HnVMAAAAM/pc-master-race-gaming.gif');
-    height: 100%;
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.863);
-    background-blend-mode: multiply;
 
+.elements {
+  display: flex;
+  gap: 2rem;
 }
-.btalign{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: 20vh;
-    padding-right: 20vh;
-    
+
+.txt-space {
+  position: relative;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
-.divline{
-    
-    border-color: blue;
-    border-style: solid;
-    padding-top: 20vh;
-    border-top: 1px;
-    border-left: 0px;
-    border-right: 0px;
-    
+
+.txt-space a {
+  text-decoration: none;
+  color: white;
 }
-.sortrow{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding-left: 5vh;  
-    margin: 20px;
-    margin-bottom: 10vh;
+
+.txt-space h3 {
+  margin: 0;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
-.centre{
-display: flex;
-justify-content: center;
-margin-top: 2vh;
-font-size: large;
+
+.txt-space:hover h3 {
+  color: #8a2be2;
+  transform: translateY(-2px);
 }
-.imgtxtc{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+
+.txt-space::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #8a2be2;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
-.pcname{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 3vw;
-    font-size: 2em;
+
+.txt-space:hover::after {
+  width: 80%;
 }
-.centre h1{
-    font-size: 3em;
-    margin-bottom: 5vh;
-    
+
+.active {
+  background: rgba(138, 43, 226, 0.1);
+  border-radius: 20px;
 }
+
+.active h3 {
+  color: #8a2be2;
+}
+
+.background {
+  padding-top: 80px;
+}
+
+.btalign {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.Button {
+  padding: 0.75rem 1.5rem;
+  background: #463c6f;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+}
+
+.Button:hover {
+  transform: scale(1.05);
+}
+
+.divline {
+  border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+  margin: 2rem 0;
+}
+
+.centre {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sortrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.imgtxtc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pcname {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #8a2be2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #8a2be2;
+}
+
+h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #ccc;
+}
+

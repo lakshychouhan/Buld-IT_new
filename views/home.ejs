@@ -209,9 +209,9 @@
                     </a>       
                 </span>
                 <div class="elements flex-container-right">
-                    <span class="txt-space centre-txt active">
-                        <a href="">
-                            <h3>Build your own PC</h3>
+                    <span class="txt-space centre-txt">
+                        <a href="#" id="aboutNav">
+                            <h3>About</h3>
                         </a>
                     </span>
                     <span class="txt-space centre-txt">
@@ -228,6 +228,12 @@
             </div>
         </nav>
     </header>
+    <script>
+        document.getElementById('aboutNav').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
 
     <section class="build-sec">
         <div class="build-pictx">
