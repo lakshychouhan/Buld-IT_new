@@ -1,47 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/op.css">
-    <title>Your Selection:</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Selection - Build-IT</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2e;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    /* Topbar/Header (matches previous pages) */
+    header {
+      background: linear-gradient(90deg, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .flex-container-left {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-name a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .product-name h3 {
+      font-size: 1.8rem;
+      margin: 0;
+      background: linear-gradient(45deg, #8A2BE2, #4B0082);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .product-name h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #8A2BE2, transparent);
+    }
+    /* Main Content Container */
+    #componentList {
+      margin-top: 100px; /* offset header height */
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    #page {
+      background-color: #2a2a3a;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+      width: 80%;
+      max-width: 800px;
+      color: #ffffff;
+    }
+    /* Print Header */
+    .printHead h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #8A2BE2;
+      text-align: center;
+    }
+    /* Components List */
+    .components {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+    .components p {
+      margin: 10px 0;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .componentType {
+      font-weight: bold;
+      color: #66aaff;
+      width: 150px;
+      display: inline-block;
+    }
+    .componentName {
+      color: #ffffff;
+    }
+    /* Footer / Buttons */
+    .foot {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .btm-btn {
+      background-color: #66aaff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .btm-btn:hover {
+      background-color: #5599dd;
+    }
+    /* Print-specific Styles */
+    @media print {
+      body, #page, .components, .componentType, .componentName {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      /* Remove shadows and extra spacing for print */
+      #page {
+        box-shadow: none;
+      }
+      header, .foot, hr {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="heading">
+  <!-- Header (same style as previous pages) -->
+  <header>
+    <div class="flex-container-left">
+      <span class="product-name">
         <a href="/">
-        <h1><span style="color: rgb(107, 107, 226);">Build</span>-IT</h1>
+          <h3>Build<span style="color: white;">-IT</span></h3>
         </a>
+      </span>
     </div>
-    <hr>
-    <div id="componentList">
-        <div id="page">
-            <div class="printHead">
-                <h1>Your Selection of Components:</h1>
-            </div>
-            <div class="components">
-                <p class="componentType">CPU: </p><p class="componentName"><%= cpuName %></p>
-                <p class="componentType">Motherboard: </p><p class="componentName"><%= motherboardName %></p>
-                <p class="componentType">GPU: </p><p class="componentName"><%= gpuName %></p>
-                <p class="componentType">Cooler: </p><p class="componentName"><%= coolerName %></p>
-                <p class="componentType">Storage: </p><p class="componentName"><%= storageName %></p>
-                <p class="componentType">RAM: </p><p class="componentName"><%= ramName %></p>
-            </div>
-        </div>
+  </header>
+  
+  <hr style="margin-top: 100px; border: none; border-top: 1px solid #444;">
+  
+  <!-- Main Content -->
+  <div id="componentList">
+    <div id="page">
+      <div class="printHead">
+        <h1>Your Selection of Components:</h1>
+      </div>
+      <div class="components">
+        <p class="componentType">CPU:</p> <p class="componentName"><%= cpuName %></p><br>
+        <p class="componentType">Motherboard:</p> <p class="componentName"><%= motherboardName %></p><br>
+        <p class="componentType">GPU:</p> <p class="componentName"><%= gpuName %></p><br>
+        <p class="componentType">Cooler:</p> <p class="componentName"><%= coolerName %></p><br>
+        <p class="componentType">Storage:</p> <p class="componentName"><%= storageName %></p><br>
+        <p class="componentType">RAM:</p> <p class="componentName"><%= ramName %></p>
+      </div>
     </div>
-    <hr>
-    <div class="foot">
-        <input class="btm-btn" type="button" value="Print" onclick="printDiv()">
-        <input class="btm-btn" type="button" value="Home" onclick="window.location.href='/'">
-    </div>
-</body>
-<script>
+  </div>
+  <hr>
+  
+  <!-- Footer / Action Buttons -->
+  <div class="foot">
+    <input class="btm-btn" type="button" value="Print" onclick="printDiv()">
+    <input class="btm-btn" type="button" value="Home" onclick="window.location.href='/'">
+  </div>
+  
+  <!-- Print Function Script -->
+  <script>
     function printDiv() {
-        var printContents = document.getElementById("page").innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
+      var printContents = document.getElementById("page").innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
     }
-</script>
+  </script>
+</body>
 </html>
