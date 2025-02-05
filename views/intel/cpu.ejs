@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       padding: 0;
@@ -14,7 +15,8 @@
       color: white;
       font-family: 'JetBrains Mono', monospace;
     }
-    .topbar {
+    /* Topbar / Header */
+    header {
       background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
       padding: 1rem 2rem;
       position: fixed;
@@ -54,12 +56,14 @@
       height: 2px;
       background: linear-gradient(90deg, #8A2BE2, transparent);
     }
+    /* Main Container */
     .container {
       max-width: 1200px;
       margin: 6rem auto 2rem;
       padding: 2rem;
       text-align: center;
     }
+    /* Search Section */
     .search-container {
       margin-bottom: 2rem;
     }
@@ -87,6 +91,7 @@
     .select-btn:hover {
       transform: scale(1.05);
     }
+    /* CPU Cards Layout */
     .cpu-list {
       display: flex;
       flex-wrap: wrap;
@@ -122,18 +127,18 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <nav class="topbar">
-      <div class="flex-container-left">
-        <span class="product-name centre-txt">
-          <a href="/">
-            <h3>Build<span style="color: white;">-IT</span></h3>
-          </a>
-        </span>
-      </div>
+    <nav class="flex-container-left">
+      <span class="product-name centre-txt">
+        <a href="/">
+          <h3>Build<span style="color: white;">-IT</span></h3>
+        </a>
+      </span>
     </nav>
   </header>
 
+  <!-- Main Content -->
   <div class="container">
     <h1>Select Your CPU</h1>
     <div class="search-container">
@@ -157,7 +162,6 @@
             <% } else { %>
               <p class="price">Price NA</p>
             <% } %>
-            <button class="select-btn">Select</button>
           </div>
         <% } %>
       <% }); %>

@@ -159,7 +159,6 @@
               <p class="details">
                 Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total / 1000000000 %> GB, Colour: <%= element.color %>
               </p>
-              <button class="select-btn">Select</button>
             </div>
           <% } %>
         <% } %>
@@ -182,7 +181,6 @@
               <p class="details">
                 Socket: <%= element.socket %> , RAM slots: <%= element.ram_slots %>, Maximum RAM: <%= element.max_ram.total / 1000000000 %> GB, Colour: <%= element.color %>
               </p>
-              <button class="select-btn">Select</button>
             </div>
           <% } %>
         <% } %>
@@ -196,7 +194,6 @@
       var filter = input.value.toUpperCase();
       var mbdList = document.getElementById('search-elements');
       var mbdCards = mbdList.getElementsByClassName('mbd-card');
-
       for (var i = 0; i < mbdCards.length; i++) {
         var a = mbdCards[i].getElementsByTagName('a')[0];
         var txtValue = a.textContent || a.innerText;
