@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
     <title>Prebuilt PCs</title>
+    
 </head>
 <body>
   
@@ -56,16 +57,24 @@
     <section class="divline">
     </div>
     <script>
-        document.querySelectorAll('.btalign .Button').forEach(button => {
-            button.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+       
+        document.querySelectorAll('.btalign .Button a').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+          });
         });
-    </script>
+      
+        document.querySelectorAll('.btalign .Button').forEach(button => {
+          button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        });
+      </script>
+      
 
     <section>
         <div id="highend" class="centre">
