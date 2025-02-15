@@ -1,484 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - PC Builder</title>
-    <link rel="stylesheet" href="styles/home.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: black;
-            color: white;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .topbar {
-            background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(138,43,226,0.2);
-            backdrop-filter: blur(8px);
-        }
-
-        .flex-container-left {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-name {
-            position: relative;
-        }
-
-        .product-name a {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-name h3 {
-            font-size: 1.8rem;
-            margin: 0;
-            background: linear-gradient(45deg, #8A2BE2, #4B0082);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-        }
-
-        .product-name h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #8A2BE2, transparent);
-        }
-
-        .elements {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .txt-space {
-            position: relative;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .txt-space a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .txt-space h3 {
-            margin: 0;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .txt-space:hover h3 {
-            color: #8A2BE2;
-            transform: translateY(-2px);
-        }
-
-        .txt-space::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: #8A2BE2;
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .txt-space:hover::after {
-            width: 80%;
-        }
-
-        .active {
-            background: rgba(138,43,226,0.1);
-            border-radius: 20px;
-        }
-
-        .active h3 {
-            color: #8A2BE2;
-        }
-
-        .build-sec {
-            text-align: center;
-            padding: 7rem 2rem 2rem;
-        }
-
-        .build-pictx {
-            margin-bottom: 2rem;
-        }
-
-        .build-pictx h1 {
-            margin-top: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .pre-cust-sec {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            padding: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .pc-option {
-            width: 300px;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .pc-option:hover {
-            transform: scale(1.05);
-        }
-
-        .pc-option img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .about-us {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3rem;
-            margin-top: 2rem;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content h2 {
-            color: #8A2BE2;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .build-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            background: #463C6F;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            margin-top: 2rem;
-        }
-
-        .build-button:hover {
-            transform: scale(1.05);
-        }
-
-        .contact-us {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3rem;
-            margin-top: 2rem;
-        }
-
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-content h2 {
-            color: #8A2BE2;
-            margin-bottom: 1.5rem;
-        }
-
-        .social-links {
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #8A2BE2;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: 5px;
-            color: white;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-
-        .contact-form button {
-            padding: 0.5rem 1rem;
-            background: #463C6F;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .contact-form button:hover {
-            background: #8A2BE2;
-        }
-
- /* Confetti container – this will be created dynamically */
-.confetti {
-    pointer-events: none; /* Ensure clicks pass through */
-    overflow: visible;
-  }
-  
-  /* Each confetti piece */
-  .confetti-piece {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #ffd300; /* default color; will be overridden inline */
-    top: 0;
-    opacity: 1;
-    /* Assign the burst animation (2 seconds duration, ease-out, and forwards to retain end state) */
-    animation: burst 2s ease-out forwards;
-  }
-  
-  /* The burst animation: pieces move downward and fade out */
-  @keyframes burst {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home - PC Builder</title>
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
     }
-    100% {
-      /* Adjust the translateY value for desired fall distance */
-      transform: translateY(300px) scale(0.5);
-      opacity: 0;
+    .topbar {
+      background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+      backdrop-filter: blur(8px);
     }
-  }
-  
-    </style>
+    .flex-container-left {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-name {
+      position: relative;
+    }
+    .product-name a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .product-name h3 {
+      font-size: 1.8rem;
+      margin: 0;
+      background: linear-gradient(45deg, #8A2BE2, #4B0082);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .product-name h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #8A2BE2, transparent);
+    }
+    .elements {
+      display: flex;
+      gap: 2rem;
+    }
+    .txt-space {
+      position: relative;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+    .txt-space a {
+      text-decoration: none;
+      color: white;
+    }
+    .txt-space h3 {
+      margin: 0;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .txt-space:hover h3 {
+      color: #8A2BE2;
+      transform: translateY(-2px);
+    }
+    .txt-space::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #8A2BE2;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .txt-space:hover::after {
+      width: 80%;
+    }
+    .active {
+      background: rgba(138,43,226,0.1);
+      border-radius: 20px;
+    }
+    .active h3 {
+      color: #8A2BE2;
+    }
+    .build-sec {
+      text-align: center;
+      padding: 7rem 2rem 2rem;
+    }
+    .build-pictx {
+      margin-bottom: 2rem;
+    }
+    .build-pictx h1 {
+      margin-top: 1rem;
+      font-size: 1.8rem;
+    }
+    .pre-cust-sec {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      flex-wrap: wrap;
+    }
+    .pc-option {
+      width: 300px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .pc-option:hover {
+      transform: scale(1.05);
+    }
+    .pc-option img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .about-us {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3rem;
+      margin-top: 2rem;
+    }
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about-content h2 {
+      color: #8A2BE2;
+      margin-bottom: 1.5rem;
+    }
+    .about-content p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .build-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      background: #463C6F;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      margin-top: 2rem;
+    }
+    .build-button:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav class="topbar">
-            <div class="flex-container-left">
-                <span class="product-name centre-txt">
-                    <a href="/">
-                        <h3>Build<span style="color: white;">-IT</span></h3>
-                    </a>       
-                </span>
-                <div class="elements flex-container-right">
-                    <span class="txt-space centre-txt">
-                        <a href="#" id="aboutNav">
-                            <h3>About</h3>
-                        </a>
-                    </span>
-                    <span class="txt-space centre-txt">
-                        <a href="/doc">
-                            <h3>Documentation</h3>
-                        </a>
-                    </span>
-                    <span class="txt-space centre-txt">
-                        <a href="/prebuild">
-                            <h3>Custom</h3>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <script>
-        document.getElementById('aboutNav').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
-
-    <section class="build-sec">
-        <div class="build-pictx">
-            <h1>Finding perfect match to your desktop needs made easy</h1>
-        </div>
-        <div class="pre-cust-sec">
-            <a href="/prebuild" class="pc-option">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mid-end1-removebg-preview-JHZ14H9XqeT9gnnf3u4OqmkekV5hqG.png" alt="Mid-Range Gaming PC">
+  <header>
+    <nav class="topbar">
+      <div class="flex-container-left">
+        <span class="product-name centre-txt">
+          <a href="/">
+            <h3>Build<span style="color: white;">-IT</span></h3>
+          </a>
+        </span>
+        <div class="elements flex-container-right">
+          <span class="txt-space centre-txt">
+            <a href="#" id="aboutNav">
+              <h3>About</h3>
             </a>
-            <a href="/prebuild" class="pc-option">
-                <img src="../images/low-end1-removebg-preview.png" alt="Entry-Level Gaming PC">
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/doc">
+              <h3>Documentation</h3>
             </a>
-            <a href="/prebuild" class="pc-option">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ehigh_end-removebg-preview-0nnkU3dBTgjKie4LJzysHWHTBnfuYX.png" alt="High-End Gaming PC">
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/prebuild">
+              <h3>Custom</h3>
             </a>
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/contact">
+              <h3>Contact-Us</h3>
+            </a>
+          </span>
         </div>
-        <button class="build-button" onclick="location.href='./build'">
-            Build Your Own
-        </button>
-    </section>
-    <main>
-        <div class="slider" style="
-        --width: 180px;
-        --height: 50px;
-        --quantity: 10;
-        ">
-        <div class="list">
-            <div class="item" style="--position: 1"><img src="images/slider1_1.png" alt=""></div>
-            <div class="item" style="--position: 2"><img src="images/slider1_2.png" alt=""></div>
-            <div class="item" style="--position: 3"><img src="images/slider1_3.png" alt=""></div>
-            <div class="item" style="--position: 4"><img src="images/slider1_4.png" alt=""></div>
-            <div class="item" style="--position: 5"><img src="images/slider1_5.png" alt=""></div>
-            <div class="item" style="--position: 6"><img src="images/slider1_6.png" alt=""></div>
-            <div class="item" style="--position: 7"><img src="images/slider1_7.png" alt=""></div>
-            <div class="item" style="--position: 8"><img src="images/slider1_8.png" alt=""></div>
-            <div class="item" style="--position: 9"><img src="images/slider1_9.png" alt=""></div>
-            <div class="item" style="--position: 10"><img src="images/slider1_10.png" alt=""></div>
-            </div>
-        </div>
-
-        <div class="slider" reverse="true" style="
-        --width: 200px;
-        --height: 200px;
-        --quantity: 9;
-        ">
-            <div class="list">
-            <div class="item" style="--position: 1"><img src="images/slider2_1.png" alt=""></div>
-            <div class="item" style="--position: 2"><img src="images/slider2_2.png" alt=""></div>
-            <div class="item" style="--position: 3"><img src="images/slider2_3.png" alt=""></div>
-            <div class="item" style="--position: 4"><img src="images/slider2_4.png" alt=""></div>
-            <div class="item" style="--position: 5"><img src="images/slider2_5.png" alt=""></div>
-            <div class="item" style="--position: 6"><img src="images/slider2_6.png" alt=""></div>
-            <div class="item" style="--position: 7"><img src="images/slider2_7.png" alt=""></div>
-            <div class="item" style="--position: 8"><img src="images/slider2_8.png" alt=""></div>
-            <div class="item" style="--position: 9"><img src="images/slider2_9.png" alt=""></div>
-            </div>
-        </div>
-    </main>
-
-    <section class="about-us">
-        <div class="about-content">
-            <h2>About Us</h2>
-            <p>Welcome to PC Builder, your ultimate destination for custom-built PCs. Whether you're a gaming enthusiast, a professional content creator, or someone who simply needs a high-performance workstation, we help you find the perfect match for your needs.</p>
-            <p>Our platform provides a seamless experience in selecting and assembling the best components to build your dream PC. From pre-built configurations to complete customization, we ensure that you get the most out of your budget and requirements.</p>
-            <p>Join us today and start building the PC you've always wanted!</p>
-        </div>
-    </section>
-
-    <section class="contact-us">
-        <div class="contact-content">
-            <h2>Contact Us</h2>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/MohammadShahbaaz/Build-IT.git"><i class="fab fa-github"></i></a>
-            </div>
-            <form class="contact-form">
-                <input type="text" placeholder=" Name" required>
-                <input type="email" placeholder=" Email" required>
-                <textarea placeholder=" Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
-  
+      </div>
+    </nav>
+  </header>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.querySelector('.contact-form');
-    
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        burstConfetti();
-        form.reset();
-        // Optionally, you could also clear the form or show another message here.
-      });
-    
-      function burstConfetti() {
-        // Create a full‑screen container for the confetti
-        const confettiContainer = document.createElement('div');
-        confettiContainer.classList.add('confetti');
-        // Style it to cover the viewport
-        Object.assign(confettiContainer.style, {
-          position: 'fixed',
-          top: '0',
-          left: '0',
-          width: '100%',
-          height: '100%',
-          zIndex: '9999'
-        });
-        document.body.appendChild(confettiContainer);
-    
-        // Create 50 confetti pieces
-        for (let i = 0; i < 50; i++) {
-          const confettiPiece = document.createElement('div');
-          confettiPiece.classList.add('confetti-piece');
-          // Random horizontal position (0% to 100%)
-          confettiPiece.style.left = Math.random() * 100 + '%';
-          // Random animation delay so they don't all move at once
-          confettiPiece.style.animationDelay = Math.random() * 0.5 + 's';
-          // Set a random background color from a preset list
-          confettiPiece.style.backgroundColor = getRandomColor();
-          // Optionally, you could also randomize the size:
-          confettiPiece.style.width = confettiPiece.style.height = Math.random() * 6 + 5 + 'px';
-          confettiContainer.appendChild(confettiPiece);
-        }
-    
-        // Remove the confetti container after 5 seconds
-        setTimeout(() => {
-          confettiContainer.remove();
-        }, 5000);
-      }
-    
-      function getRandomColor() {
-        const colors = ['#ffd300', '#de561c', '#ff3864', '#4bc0c8', '#4b0082'];
-        return colors[Math.floor(Math.random() * colors.length)];
-      }
+    document.getElementById('aboutNav').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.querySelector('.about-us').scrollIntoView({ behavior: 'smooth' });
     });
-    </script>
-    
-        
-</script>
+  </script>
+  <section class="build-sec">
+    <div class="build-pictx">
+      <h1>Finding perfect match to your desktop needs made easy</h1>
+    </div>
+    <div class="pre-cust-sec">
+      <a href="/prebuild" class="pc-option">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mid-end1-removebg-preview-JHZ14H9XqeT9gnnf3u4OqmkekV5hqG.png" alt="Mid-Range Gaming PC" />
+      </a>
+      <a href="/prebuild" class="pc-option">
+        <img src="../images/low-end1-removebg-preview.png" alt="Entry-Level Gaming PC" />
+      </a>
+      <a href="/prebuild" class="pc-option">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ehigh_end-removebg-preview-0nnkU3dBTgjKie4LJzysHWHTBnfuYX.png" alt="High-End Gaming PC" />
+      </a>
+    </div>
+    <button class="build-button" onclick="location.href='./build'">
+      Build Your Own
+    </button>
+  </section>
+  <main>
+    <div class="slider" style="--width: 180px; --height: 50px; --quantity: 10;">
+      <div class="list">
+        <div class="item" style="--position: 1"><img src="images/slider1_1.png" alt="" /></div>
+        <div class="item" style="--position: 2"><img src="images/slider1_2.png" alt="" /></div>
+        <div class="item" style="--position: 3"><img src="images/slider1_3.png" alt="" /></div>
+        <div class="item" style="--position: 4"><img src="images/slider1_4.png" alt="" /></div>
+        <div class="item" style="--position: 5"><img src="images/slider1_5.png" alt="" /></div>
+        <div class="item" style="--position: 6"><img src="images/slider1_6.png" alt="" /></div>
+        <div class="item" style="--position: 7"><img src="images/slider1_7.png" alt="" /></div>
+        <div class="item" style="--position: 8"><img src="images/slider1_8.png" alt="" /></div>
+        <div class="item" style="--position: 9"><img src="images/slider1_9.png" alt="" /></div>
+        <div class="item" style="--position: 10"><img src="images/slider1_10.png" alt="" /></div>
+      </div>
+    </div>
+    <div class="slider" reverse="true" style="--width: 200px; --height: 200px; --quantity: 9;">
+      <div class="list">
+        <div class="item" style="--position: 1"><img src="images/slider2_1.png" alt="" /></div>
+        <div class="item" style="--position: 2"><img src="images/slider2_2.png" alt="" /></div>
+        <div class="item" style="--position: 3"><img src="images/slider2_3.png" alt="" /></div>
+        <div class="item" style="--position: 4"><img src="images/slider2_4.png" alt="" /></div>
+        <div class="item" style="--position: 5"><img src="images/slider2_5.png" alt="" /></div>
+        <div class="item" style="--position: 6"><img src="images/slider2_6.png" alt="" /></div>
+        <div class="item" style="--position: 7"><img src="images/slider2_7.png" alt="" /></div>
+        <div class="item" style="--position: 8"><img src="images/slider2_8.png" alt="" /></div>
+        <div class="item" style="--position: 9"><img src="images/slider2_9.png" alt="" /></div>
+      </div>
+    </div>
+  </main>
+  <section class="about-us">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        Welcome to PC Builder, your ultimate destination for custom-built PCs.
+        Whether you're a gaming enthusiast, a professional content creator, or
+        someone who simply needs a high-performance workstation, we help you find
+        the perfect match for your needs.
+      </p>
+      <p>
+        Our platform provides a seamless experience in selecting and assembling
+        the best components to build your dream PC. From pre-built configurations
+        to complete customization, we ensure that you get the most out of your
+        budget and requirements.
+      </p>
+      <p>Join us today and start building the PC you've always wanted!</p>
+    </div>
+  </section>
 </body>
 </html>
-

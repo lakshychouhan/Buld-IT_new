@@ -34,6 +34,11 @@ app.get('/prebuild',(req,res) => {
     res.end();
 });
 
+// Route for the contact page
+app.get('/contact', (req, res) => {
+    res.render('contact');
+  });
+
 const intelRouter = require('./routes/intel');
 const amdRouter = require('./routes/amd');
 
