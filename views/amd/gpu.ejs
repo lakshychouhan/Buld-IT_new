@@ -147,10 +147,22 @@
       <input type="text" id="search" class="search-box" placeholder="Search Component">
       <input type="button" id="search-exec" class="select-btn" value="Search" onclick="filter()">
     </div>
+    <div class="filter-container">
+      <label for="vram-filter">Filter by VRAM:</label>
+      <select id="vram-filter" class="select-btn" onchange="filterByVram()">
+        <option value="all">All</option>
+        <option value="4">4 GB</option>
+        <option value="6">6 GB</option>
+        <option value="8">8 GB</option>
+        <option value="10">10 GB</option>
+        <option value="11">11 GB</option>
+        <option value="16">16 GB</option>
+      </select>
+    </div>
     <div class="gpu-list" id="search-elements">
       <% gpu.videoCard.forEach(element => { %>
         <% if (element.core_clock != undefined && element.vram.total >= 4000000000 && element.core_clock.cycles >= 1392000000 && !element.chipset.includes("Quadro") && !element.chipset.includes("Titan")) { %>
-          <div class="gpu-card">
+          <div class="gpu-card" data-vram="<%= element.vram.total / 1000000000 %>">
             <h3>
               <a href="gpu/<%= element.brand %> <%= element.chipset %>/coolers">
                 <%= element.brand %> <%= element.chipset %>
@@ -165,8 +177,10 @@
               VRAM: <%= element.vram.total / 1000000000 %> GB
             </p>
           </div>
+          
         <% } %>
       <% }); %>
+      
     </div>
   </div>
 
@@ -175,6 +189,7 @@
       var input = document.getElementById('search');
       var filter = input.value.toUpperCase();
       var gpuList = document.getElementById('search-elements');
+     
       var gpuCards = gpuList.getElementsByClassName('gpu-card');
       for (var i = 0; i < gpuCards.length; i++) {
         var a = gpuCards[i].getElementsByTagName('a')[0];
@@ -186,6 +201,21 @@
         }
       }
     }
+    function filterByVram() {
+      var vramFilter = document.getElementById('vram-filter').value;
+      var gpuCards = document.getElementsByClassName('gpu-card');
+    
+      for (var i = 0; i < gpuCards.length; i++) {
+        var vramValue = gpuCards[i].getAttribute('data-vram'); // Read the data-vram attribute
+        if (vramFilter === "all" || vramValue === vramFilter) {
+          gpuCards[i].style.display = "block";
+        } else {
+          gpuCards[i].style.display = "none";
+        }
+      }
+    }
+    
+    
   </script>
 </body>
 </html>
