@@ -175,4 +175,100 @@ h3 {
   margin: 0.5rem 0;
   color: #ccc;
 }
-
+    /* Add these styles to your existing styles */
+    .footer-container {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 48px 0;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-size: 24px;
+      font-weight: 600;
+      background: linear-gradient(to right, #8A2BE2, #4B0082);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .footer-text {
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-social a {
+      color: #9ca3af;
+      transition: color 0.3s ease;
+    }
+    .footer-social a:hover {
+      color: #8A2BE2;
+    }
+    .footer-heading {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-link {
+      color: #9ca3af;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-link:hover {
+      color: #8A2BE2;
+    }
+    .footer-copyright {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 14px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid #374151;
+    }
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background-color: #463C6F;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      display: none;
+      transition: background-color 0.3s ease;
+    }
+    .scroll-top-btn:hover {
+      background-color: #8A2BE2;
+    }

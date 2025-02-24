@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../styles/prebuild.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <title>Prebuilt PCs</title>
     
 </head>
@@ -107,7 +109,7 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                       
                     <% }}); %>
                 </div>
             </span>
@@ -133,7 +135,7 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                       
                     <% }}); %>
                 </div>
             </span>
@@ -163,7 +165,7 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                        
                     <% }}); %>
                 </div>
             </span>
@@ -189,7 +191,7 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                        
                     <% }}); %>
                 </div>
             </span>
@@ -219,7 +221,7 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                        
                     <% }}); %>
                 </div>
             </span>
@@ -245,10 +247,81 @@
                         <h3><%= element.PSU %> </h3>
                         <h3><%= element.Price %> </h3>
                         <h3><%= %></h3>
-                        <!-- Baaki details etc kaise kya UI karna hai dekh le pls -->
+                        
                     <% }}); %>
                 </div>
             </span>
     </section>
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-grid">
+            
+            <div class="footer-column">
+                <a href="/" class="footer-logo">Build-IT</a>
+                <p class="footer-text">
+                Whether gaming, streaming, or content creation is your passion, we've got you covered with the latest cutting-edge parts. PC building made easy - that's our commitment. Scroll up and start picking parts today.
+                </p>
+                <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
+                <a href="#" class="footer-link">Amazon India Price Tracker</a>
+            </div>
+
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Important Links</h4>
+                <div class="footer-links">
+                <a href="/about" class="footer-link">About Us</a>
+                <a href="/terms" class="footer-link">Terms of Use</a>
+                <a href="/privacy" class="footer-link">Privacy Policy</a>
+                <a href="/builder" class="footer-link">Builder</a>
+                <a href="/affiliate" class="footer-link">Affiliate Disclosure</a>
+                <a href="/contact" class="footer-link">Contact</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-heading">Builds</h4>
+                <div class="footer-links">
+                <a href="/builds/budget" class="footer-link">Budget Build</a>
+                <a href="/builds/mid-range" class="footer-link">Mid Range Build</a>
+                <a href="/builds/enthusiast" class="footer-link">Enthusiast Build</a>
+                <a href="/builds/high-end" class="footer-link">High End Build</a>
+                </div>
+                <p class="footer-text" style="font-size: 12px; margin-top: 16px;">
+                Build-IT engages in the Amazon Services LLC Associates Program, an affiliate advertising initiative crafted to enable websites to generate advertising income by promoting and establishing links to Amazon.in
+                </p>
+            </div>
+            </div>
+
+            <div class="footer-copyright">
+            Copyright © <%= new Date().getFullYear() %>, Build-IT India. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+    
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+            scrollToTopBtn.style.display = 'block';
+            } else {
+            scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
