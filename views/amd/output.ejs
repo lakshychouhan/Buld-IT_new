@@ -6,132 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Selection - Build-IT</title>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #1e1e2e;
-      color: #ffffff;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    /* Topbar/Header (matches previous pages) */
-    header {
-      background: linear-gradient(90deg, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
-      backdrop-filter: blur(8px);
-    }
-    .flex-container-left {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .product-name a {
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-    }
-    .product-name h3 {
-      font-size: 1.8rem;
-      margin: 0;
-      background: linear-gradient(45deg, #8A2BE2, #4B0082);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
-    }
-    .product-name h3::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, #8A2BE2, transparent);
-    }
-    /* Main Content Container */
-    #componentList {
-      margin-top: 100px; /* offset header height */
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-    #page {
-      background-color: #2a2a3a;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
-      width: 80%;
-      max-width: 800px;
-      color: #ffffff;
-    }
-    /* Print Header */
-    .printHead h1 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-      color: #8A2BE2;
-      text-align: center;
-    }
-    /* Components List */
-    .components {
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-    .components p {
-      margin: 10px 0;
-      display: inline-block;
-      vertical-align: top;
-    }
-    .componentType {
-      font-weight: bold;
-      color: #66aaff;
-      width: 150px;
-      display: inline-block;
-    }
-    .componentName {
-      color: #ffffff;
-    }
-    /* Footer / Buttons */
-    .foot {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .btm-btn {
-      background-color: #66aaff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-    .btm-btn:hover {
-      background-color: #5599dd;
-    }
-    /* Print-specific Styles */
-    @media print {
-      body, #page, .components, .componentType, .componentName {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-      }
-      /* Remove shadows and extra spacing for print */
-      #page {
-        box-shadow: none;
-      }
-      header, .foot, hr {
-        display: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/styles/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
 </head>
 <body>
   <!-- Header (same style as previous pages) -->
@@ -180,6 +58,80 @@
       window.print();
       document.body.innerHTML = originalContents;
     }
+  </script>
+  <footer class="footer-container">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <!-- Logo and Description -->
+        <div class="footer-column">
+          <a href="/" class="footer-logo">Build-IT</a>
+          <p class="footer-text">
+            Whether gaming, streaming, or content creation is your passion, we've got you covered with the latest cutting-edge parts. PC building made easy - that's our commitment. Scroll up and start picking parts today.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+          <a href="#" class="footer-link">Amazon India Price Tracker</a>
+        </div>
+  
+        <!-- Important Links -->
+        <div class="footer-column">
+          <h4 class="footer-heading">Important Links</h4>
+          <div class="footer-links">
+            <a href="/about" class="footer-link">About Us</a>
+            <a href="/terms" class="footer-link">Terms of Use</a>
+            <a href="/privacy" class="footer-link">Privacy Policy</a>
+            <a href="/builder" class="footer-link">Builder</a>
+            <a href="/affiliate" class="footer-link">Affiliate Disclosure</a>
+            <a href="/contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+  
+        <!-- Builds -->
+        <div class="footer-column">
+          <h4 class="footer-heading">Builds</h4>
+          <div class="footer-links">
+            <a href="/builds/budget" class="footer-link">Budget Build</a>
+            <a href="/builds/mid-range" class="footer-link">Mid Range Build</a>
+            <a href="/builds/enthusiast" class="footer-link">Enthusiast Build</a>
+            <a href="/builds/high-end" class="footer-link">High End Build</a>
+          </div>
+          <p class="footer-text" style="font-size: 12px; margin-top: 16px;">
+            Build-IT engages in the Amazon Services LLC Associates Program, an affiliate advertising initiative crafted to enable websites to generate advertising income by promoting and establishing links to Amazon.in
+          </p>
+        </div>
+      </div>
+  
+      <!-- Copyright -->
+      <div class="footer-copyright">
+        Copyright © <%= new Date().getFullYear() %>, Build-IT India. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scroll to top button -->
+  <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <script>
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.display = 'block';
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    });
+  
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
