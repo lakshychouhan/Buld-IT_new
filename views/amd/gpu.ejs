@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
   <style>
-    /* Global Styles */
     body {
       margin: 0;
       padding: 0;
@@ -15,15 +14,14 @@
       color: white;
       font-family: 'JetBrains Mono', monospace;
     }
-    /* Topbar / Header */
-    header {
-      background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+    .topbar {
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(70, 60, 111, 0.95));
       padding: 1rem 2rem;
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+      box-shadow: 0 2px 15px rgba(138, 43, 226, 0.2);
       backdrop-filter: blur(8px);
     }
     .flex-container-left {
@@ -56,14 +54,12 @@
       height: 2px;
       background: linear-gradient(90deg, #8A2BE2, transparent);
     }
-    /* Main Container */
     .container {
       max-width: 1200px;
       margin: 6rem auto 2rem;
       padding: 2rem;
       text-align: center;
     }
-    /* Search Section */
     .search-container {
       margin-bottom: 2rem;
     }
@@ -75,7 +71,7 @@
       outline: none;
       font-size: 1rem;
       text-align: center;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
       margin-right: 1rem;
     }
@@ -91,7 +87,6 @@
     .select-btn:hover {
       transform: scale(1.05);
     }
-    /* GPU Cards Layout */
     .gpu-list {
       display: flex;
       flex-wrap: wrap;
@@ -100,7 +95,7 @@
       margin-top: 2rem;
     }
     .gpu-card {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       padding: 1.5rem;
       border-radius: 15px;
       width: 300px;
@@ -109,7 +104,7 @@
     }
     .gpu-card:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 10px rgba(138,43,226,0.3);
+      box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
     }
     .gpu-card h3 {
       color: #8A2BE2;
@@ -127,7 +122,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <nav class="topbar">
       <div class="flex-container-left">
@@ -140,14 +134,14 @@
     </nav>
   </header>
 
-  <!-- Main Container -->
   <div class="container">
     <h1>Choose GPU</h1>
     <div class="search-container">
       <input type="text" id="search" class="search-box" placeholder="Search Component">
       <input type="button" id="search-exec" class="select-btn" value="Search" onclick="filter()">
+      <input type="button" id="filter-toggle" class="select-btn" value="Filter" onclick="toggleFilterMenu()">
     </div>
-    <div class="filter-container">
+    <div id="filter-menu" class="filter-container" style="display: none;">
       <label for="vram-filter">Filter by VRAM:</label>
       <select id="vram-filter" class="select-btn" onchange="filterByVram()">
         <option value="all">All</option>
@@ -155,8 +149,26 @@
         <option value="6">6 GB</option>
         <option value="8">8 GB</option>
         <option value="10">10 GB</option>
-        <option value="11">11 GB</option>
+        <option value="12">12 GB</option>
         <option value="16">16 GB</option>
+      </select>
+      <label for="price-filter">Filter by Price:</label>
+      <select id="price-filter" class="select-btn" onchange="filterByPrice()">
+        <option value="all">All</option>
+        <option value="10000">Below ₹10,000</option>
+        <option value="20000">Below ₹20,000</option>
+        <option value="30000">Below ₹30,000</option>
+        <option value="50000">Below ₹50,000</option>
+        <option value="100000">Below ₹1,00,000</option>
+      </select>
+      <label for="generation-filter">Filter by Generation:</label>
+      <select id="generation-filter" class="select-btn" onchange="filterByGeneration()">
+        <option value="all">All</option>
+        <option value="gtx-16">GTX 16 Series (1650, 1660)</option>
+        <option value="rtx-20">RTX 20 Series (2060, 2070, 2080, 2080 Ti)</option>
+        <option value="rtx-30">RTX 30 Series (3050, 3060, 3070, 3080, 3090)</option>
+        <option value="rx-5000">RX 5000 Series (RX 5500, 5600, 5700 XT)</option>
+        <option value="rx-6000">RX 6000 Series (RX 6600, 6700, 6800 XT)</option>
       </select>
     </div>
     <div class="gpu-list" id="search-elements">
@@ -177,20 +189,74 @@
               VRAM: <%= element.vram.total / 1000000000 %> GB
             </p>
           </div>
-          
         <% } %>
       <% }); %>
-      
     </div>
+
   </div>
 
   <script>
+    function filterByGeneration() {
+  var generationFilter = document.getElementById('generation-filter').value;
+  var gpuCards = document.getElementsByClassName('gpu-card');
+
+  for (var i = 0; i < gpuCards.length; i++) {
+    var gpuName = gpuCards[i].querySelector('h3 a').textContent.toLowerCase();
+    
+    var match = false;
+    if (generationFilter === "all") {
+      match = true;
+    } else if (generationFilter === "gtx-16" && (gpuName.includes("1650") || gpuName.includes("1660"))) {
+      match = true;
+    } else if (generationFilter === "rtx-20" && (gpuName.includes("2060") || gpuName.includes("2070") || gpuName.includes("2080") || gpuName.includes("2080 ti"))) {
+      match = true;
+    } else if (generationFilter === "rtx-30" && (gpuName.includes("3050") || gpuName.includes("3060") || gpuName.includes("3070") || gpuName.includes("3080") || gpuName.includes("3090"))) {
+      match = true;
+    } else if (generationFilter === "rx-5000" && (gpuName.includes("5500") || gpuName.includes("5600") || gpuName.includes("5700") || gpuName.includes("5700 xt"))) {
+      match = true;
+    } else if (generationFilter === "rx-6000" && (gpuName.includes("6600") || gpuName.includes("6700") || gpuName.includes("6800") || gpuName.includes("6800 xt"))) {
+      match = true;
+    }
+
+    gpuCards[i].style.display = match ? "block" : "none";
+  }
+}
+
+    function toggleFilterMenu() {
+  var filterMenu = document.getElementById("filter-menu");
+  if (filterMenu.style.display === "none") {
+    filterMenu.style.display = "block";
+  } else {
+    filterMenu.style.display = "none";
+  }
+}
+
+function filterByPrice() {
+  var priceFilter = document.getElementById('price-filter').value;
+  var gpuCards = document.getElementsByClassName('gpu-card');
+
+  for (var i = 0; i < gpuCards.length; i++) {
+    var priceElement = gpuCards[i].querySelector('.price');
+    var priceText = priceElement.textContent || priceElement.innerText;
+    var priceValue = parseInt(priceText.replace(/\D/g, ''), 10) || 0;
+
+    // Hide GPUs where price is "NA" if any filter other than "all" is selected
+    if (priceText.includes("NA") && priceFilter !== "all") {
+      gpuCards[i].style.display = "none";
+    } else if (priceFilter === "all" || priceValue <= parseInt(priceFilter)) {
+      gpuCards[i].style.display = "block";
+    } else {
+      gpuCards[i].style.display = "none";
+    }
+  }
+}
+
     function filter() {
       var input = document.getElementById('search');
       var filter = input.value.toUpperCase();
       var gpuList = document.getElementById('search-elements');
-     
       var gpuCards = gpuList.getElementsByClassName('gpu-card');
+
       for (var i = 0; i < gpuCards.length; i++) {
         var a = gpuCards[i].getElementsByTagName('a')[0];
         var txtValue = a.textContent || a.innerText;
@@ -214,8 +280,6 @@
         }
       }
     }
-    
-    
   </script>
 </body>
 </html>

@@ -119,6 +119,54 @@
       font-size: 0.9rem;
       margin-bottom: 1rem;
     }
+    /* Filter Dropdown Styling */
+    .filter-dropdown {
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1); /* Matches the theme */
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-align: center;
+    }
+    
+    /* Dropdown menu when opened */
+    .filter-dropdown option {
+      background: #1a1a1a; /* Dark background */
+      color: white; /* White text */
+    }
+    
+    /* Ensuring the selected option stays visible */
+    .filter-dropdown option:checked {
+      background: #8A2BE2; /* Purple background for selected item */
+      color: white;
+    }
+    /* Price Range Dropdown */
+.price-dropdown {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid #8A2BE2;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.price-dropdown:focus {
+  outline: none;
+  box-shadow: 0 0 5px #8A2BE2;
+}
+
+.price-dropdown option {
+  background: black;
+  color: white;
+}
   </style>
 </head>
 <body>
@@ -139,8 +187,9 @@
     <div class="search-container">
       <input type="text" id="search" class="search-box" placeholder="Search Component">
       <input type="button" id="search-exec" class="select-btn" value="Search" onclick="filter()">
+      <input type="button" id="filter-toggle" class="select-btn" value="Filter" onclick="toggleFilterMenu()">
     </div>
-    <div class="filter-container">
+    <div id="filter-menu" class="filter-container" style="display: none;">
       <label for="vram-filter">Filter by VRAM:</label>
       <select id="vram-filter" class="select-btn" onchange="filterByVram()">
         <option value="all">All</option>
@@ -148,8 +197,26 @@
         <option value="6">6 GB</option>
         <option value="8">8 GB</option>
         <option value="10">10 GB</option>
-        <option value="11">11 GB</option>
+        <option value="12">12 GB</option>
         <option value="16">16 GB</option>
+      </select>
+      <label for="price-filter">Filter by Price:</label>
+      <select id="price-filter" class="select-btn" onchange="filterByPrice()">
+        <option value="all">All</option>
+        <option value="10000">Below ₹10,000</option>
+        <option value="20000">Below ₹20,000</option>
+        <option value="30000">Below ₹30,000</option>
+        <option value="50000">Below ₹50,000</option>
+        <option value="100000">Below ₹1,00,000</option>
+      </select>
+      <label for="generation-filter">Filter by Generation:</label>
+      <select id="generation-filter" class="select-btn" onchange="filterByGeneration()">
+        <option value="all">All</option>
+        <option value="gtx-16">GTX 16 Series (1650, 1660)</option>
+        <option value="rtx-20">RTX 20 Series (2060, 2070, 2080, 2080 Ti)</option>
+        <option value="rtx-30">RTX 30 Series (3050, 3060, 3070, 3080, 3090)</option>
+        <option value="rx-5000">RX 5000 Series (RX 5500, 5600, 5700 XT)</option>
+        <option value="rx-6000">RX 6000 Series (RX 6600, 6700, 6800 XT)</option>
       </select>
     </div>
     <div class="gpu-list" id="search-elements">
@@ -177,6 +244,61 @@
   </div>
 
   <script>
+    function filterByGeneration() {
+  var generationFilter = document.getElementById('generation-filter').value;
+  var gpuCards = document.getElementsByClassName('gpu-card');
+
+  for (var i = 0; i < gpuCards.length; i++) {
+    var gpuName = gpuCards[i].querySelector('h3 a').textContent.toLowerCase();
+    
+    var match = false;
+    if (generationFilter === "all") {
+      match = true;
+    } else if (generationFilter === "gtx-16" && (gpuName.includes("1650") || gpuName.includes("1660"))) {
+      match = true;
+    } else if (generationFilter === "rtx-20" && (gpuName.includes("2060") || gpuName.includes("2070") || gpuName.includes("2080") || gpuName.includes("2080 ti"))) {
+      match = true;
+    } else if (generationFilter === "rtx-30" && (gpuName.includes("3050") || gpuName.includes("3060") || gpuName.includes("3070") || gpuName.includes("3080") || gpuName.includes("3090"))) {
+      match = true;
+    } else if (generationFilter === "rx-5000" && (gpuName.includes("5500") || gpuName.includes("5600") || gpuName.includes("5700") || gpuName.includes("5700 xt"))) {
+      match = true;
+    } else if (generationFilter === "rx-6000" && (gpuName.includes("6600") || gpuName.includes("6700") || gpuName.includes("6800") || gpuName.includes("6800 xt"))) {
+      match = true;
+    }
+
+    gpuCards[i].style.display = match ? "block" : "none";
+  }
+}
+
+    function toggleFilterMenu() {
+  var filterMenu = document.getElementById("filter-menu");
+  if (filterMenu.style.display === "none") {
+    filterMenu.style.display = "block";
+  } else {
+    filterMenu.style.display = "none";
+  }
+}
+
+function filterByPrice() {
+  var priceFilter = document.getElementById('price-filter').value;
+  var gpuCards = document.getElementsByClassName('gpu-card');
+
+  for (var i = 0; i < gpuCards.length; i++) {
+    var priceElement = gpuCards[i].querySelector('.price');
+    var priceText = priceElement.textContent || priceElement.innerText;
+    var priceValue = parseInt(priceText.replace(/\D/g, ''), 10) || 0;
+
+    // Hide GPUs where price is "NA" if any filter other than "all" is selected
+    if (priceText.includes("NA") && priceFilter !== "all") {
+      gpuCards[i].style.display = "none";
+    } else if (priceFilter === "all" || priceValue <= parseInt(priceFilter)) {
+      gpuCards[i].style.display = "block";
+    } else {
+      gpuCards[i].style.display = "none";
+    }
+  }
+}
+
     function filter() {
       var input = document.getElementById('search');
       var filter = input.value.toUpperCase();
