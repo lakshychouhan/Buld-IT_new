@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - PC Builder</title>
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Source+Sans+Pro:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://kit.fontawesome.com/ae8f1db1af.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .topbar {
+      background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(70,60,111,0.95));
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(138,43,226,0.2);
+      backdrop-filter: blur(8px);
+    }
+    .flex-container-left {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-name {
+      position: relative;
+    }
+    .product-name a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    .product-name h3 {
+      font-size: 1.8rem;
+      margin: 0;
+      background: linear-gradient(45deg, #8A2BE2, #4B0082);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+    }
+    .product-name h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #8A2BE2, transparent);
+    }
+    .elements {
+      display: flex;
+      gap: 2rem;
+    }
+    .txt-space {
+      position: relative;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+    }
+    .txt-space a {
+      text-decoration: none;
+      color: white;
+    }
+    .txt-space h3 {
+      margin: 0;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .txt-space:hover h3 {
+      color: #8A2BE2;
+      transform: translateY(-2px);
+    }
+    .txt-space::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: #8A2BE2;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .txt-space:hover::after {
+      width: 80%;
+    }
+    .active {
+      background: rgba(138,43,226,0.1);
+      border-radius: 20px;
+    }
+    .active h3 {
+      color: #8A2BE2;
+    }
+    
+    /* About page specific styles */
+    .about-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(to bottom, rgba(70,60,111,0.3), rgba(0,0,0,0.8));
+    }
+    .about-hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #8A2BE2;
+    }
+    .about-hero p {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .about-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .about-image {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(138,43,226,0.3);
+    }
+    .about-content h2 {
+      color: #8A2BE2;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    .about-content p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .mission-section {
+      background: rgba(70,60,111,0.2);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .mission-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .mission-content h2 {
+      color: #8A2BE2;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+    .mission-content p {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .team-section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .team-section h2 {
+      color: #8A2BE2;
+      margin-bottom: 3rem;
+      font-size: 1.8rem;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .team-member {
+      background: rgba(70,60,111,0.2);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid #8A2BE2;
+    }
+    .team-member h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .team-member p.role {
+      color: #8A2BE2;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .team-member p.bio {
+      color: #ccc;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="topbar">
+      <div class="flex-container-left">
+        <span class="product-name centre-txt">
+          <a href="/">
+            <h3>Build<span style="color: white;">-IT</span></h3>
+          </a>
+        </span>
+        <div class="elements flex-container-right">
+          <span class="txt-space centre-txt active">
+            <a href="/about">
+              <h3>About</h3>
+            </a>
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/doc">
+              <h3>Documentation</h3>
+            </a>
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/prebuild">
+              <h3>Custom</h3>
+            </a>
+          </span>
+          <span class="txt-space centre-txt">
+            <a href="/contact">
+              <h3>Contact-Us</h3>
+            </a>
+          </span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="about-hero">
+    <h1>About Build-IT</h1>
+    <p>Your trusted partner in building the perfect PC for your needs</p>
+  </section>
+
+  <section class="about-section">
+    <div class="about-grid">
+      <img src="/images/about-company.jpg" alt="Build-IT Workspace" class="about-image">
+      <div class="about-content">
+        <h2>Our Company</h2>
+        <p>
+          Welcome to Build-IT, your ultimate destination for custom-built PCs. Founded in 2025, we've been helping tech enthusiasts, gamers, and professionals find the perfect hardware solutions for their specific needs.
+        </p>
+        <p>
+          At Build-IT, we believe that everyone deserves a PC that perfectly matches their requirements without breaking the bank. Our platform simplifies the complex process of selecting compatible components, ensuring you get the best performance for your budget.
+        </p>
+        <p>
+          Whether you're a gaming enthusiast looking for high FPS performance, a content creator needing rendering power, or a professional requiring a reliable workstation, our team of experts is here to guide you through every step of the PC building journey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-section">
+    <div class="mission-content">
+      <h2>Our Mission</h2>
+      <p>
+        At Build-IT, our mission is to democratize custom PC building by making it accessible, affordable, and enjoyable for everyone. We strive to empower our customers with the knowledge and tools they need to make informed decisions about their hardware.
+      </p>
+      <p>
+        We are committed to providing transparent advice, competitive pricing, and exceptional customer service. Our goal is not just to sell components, but to build lasting relationships with our community of PC enthusiasts.
+      </p>
+      <p>
+        We believe in the perfect balance of performance, reliability, and value. Every recommendation we make is backed by extensive testing and real-world experience to ensure you get a system that exceeds your expectations.
+      </p>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="/images/team-member1.png" alt="Team Member">
+        <h3>Mohd.Shahbaaz</h3>
+        <p class="role">Founder & CEO</p>
+        <p class="bio">With over 15 years of experience in hardware engineering, he founded Build-IT with a vision to make custom PC building accessible to everyone.</p>
+      </div>
+      <div class="team-member">
+        <img src="/images/team-member2.png" alt="Team Member">
+        <h3>Lakshy Chouhan</h3>
+        <p class="role">Technical Director</p>
+        <p class="bio">Priya oversees all technical aspects of our recommendations, ensuring that every build we suggest meets our high standards for performance and reliability.</p>
+      </div>
+      <div class="team-member">
+        <img src="/images/team-member3.jpg" alt="Team Member">
+        <h3>N/A</h3>
+        <p class="role">Customer Experience Manager</p>
+        <p class="bio">He leads our customer support team, making sure that every Build-IT customer receives personalized assistance throughout their PC building journey.</p>
+      </div>
+      <div class="team-member">
+        <img src="/images/team-member4.jpg" alt="Team Member">
+        <h3>N/A</h3>
+        <p class="role">Content Creator</p>
+        <p class="bio">He creates our educational content, tutorials, and guides, helping newcomers understand the intricacies of PC building with clear, accessible information.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-container">
+    <div class="footer-content">
+      <div class="footer-grid">
+        <!-- Logo and Description -->
+        <div class="footer-column">
+          <a href="/" class="footer-logo">Build-IT</a>
+          <p class="footer-text">
+            Whether gaming, streaming, or content creation is your passion, we've got you covered with the latest cutting-edge parts. PC building made easy - that's our commitment. Scroll up and start picking parts today.
+          </p>
+          <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+          <a href="#" class="footer-link">Amazon India Price Tracker</a>
+        </div>
+  
+        <!-- Important Links -->
+        <div class="footer-column">
+          <h4 class="footer-heading">Important Links</h4>
+          <div class="footer-links">
+            <a href="/about" class="footer-link">About Us</a>
+            <a href="/terms" class="footer-link">Terms of Use</a>
+            <a href="/privacy" class="footer-link">Privacy Policy</a>
+            <a href="/builder" class="footer-link">Builder</a>
+            <a href="/affiliate" class="footer-link">Affiliate Disclosure</a>
+            <a href="/contact" class="footer-link">Contact</a>
+          </div>
+        </div>
+  
+        <!-- Builds -->
+        <div class="footer-column">
+          <h4 class="footer-heading">Builds</h4>
+          <div class="footer-links">
+            <a href="/builds/budget" class="footer-link">Budget Build</a>
+            <a href="/builds/mid-range" class="footer-link">Mid Range Build</a>
+            <a href="/builds/enthusiast" class="footer-link">Enthusiast Build</a>
+            <a href="/builds/high-end" class="footer-link">High End Build</a>
+          </div>
+          <p class="footer-text" style="font-size: 12px; margin-top: 16px;">
+            Build-IT engages in the Amazon Services LLC Associates Program, an affiliate advertising initiative crafted to enable websites to generate advertising income by promoting and establishing links to Amazon.in
+          </p>
+        </div>
+      </div>
+  
+      <!-- Copyright -->
+      <div class="footer-copyright">
+        Copyright © <%= new Date().getFullYear() %>, Build-IT India. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Scroll to top button -->
+  <button id="scrollToTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
+  <script>
+    // Scroll to top functionality
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+  
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.style.display = 'block';
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    });
+  
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
