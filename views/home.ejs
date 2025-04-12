@@ -177,6 +177,38 @@
     .build-button:hover {
       transform: scale(1.05);
     }
+    .flex-container-left {
+      position: relative;
+    }
+    
+    .logout-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    .logout-link {
+      background-color: #9b59b6;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: normal;
+      transition: background-color 0.3s ease, transform 0.2s ease, font-weight 0.2s ease;
+      box-shadow: 0 0 10px rgba(155, 89, 182, 0.6);
+      display: inline-block;
+      margin: 0; /* remove default h3 margin if needed */
+    }
+    
+    /* On hover, only change background and font-weight — NOT color */
+    .logout-link:hover {
+      background-color: #8e44ad;
+      font-weight: bold;
+      color: #fff !important; /* force white color */
+      transform: scale(1.05);
+    }
+    
+
   </style>
 </head>
 <body>
@@ -189,11 +221,11 @@
           </a>
         </span>
         <div class="elements flex-container-right">
-          <span class="txt-space centre-txt">
+          <!-- <span class="txt-space centre-txt">
             <a href="#" id="aboutNav">
               <h3>About</h3>
             </a>
-          </span>
+          </span> -->
           <span class="txt-space centre-txt">
             <a href="/doc">
               <h3>Documentation</h3>
@@ -214,6 +246,13 @@
               <h3>About-us</h3>
             </a>
           </span>
+          <!-- Logout button -->
+          <span class="txt-space centre-txt logout-btn">
+            <a href="/logout">
+              <h3 class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</h3>
+            </a>
+          </span>          
+                   
         </div>
       </div>
     </nav>
@@ -274,7 +313,7 @@
   </main>
   <section class="about-us">
     <div class="about-content">
-      <h2>About Us</h2>
+      <h2>Discription</h2>
       <p>
         Welcome to PC Builder, your ultimate destination for custom-built PCs.
         Whether you're a gaming enthusiast, a professional content creator, or

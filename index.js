@@ -85,6 +85,11 @@ app.get('/logout', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about');
 });
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
+
 
 // Routers for intel and amd (protected)
 const intelRouter = require('./routes/intel');

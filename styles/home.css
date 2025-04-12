@@ -151,22 +151,97 @@ body {
 }
 
 /* Build Your Own Button */
+/* Build Your Own Button */
 .build-button {
     display: inline-block;
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    background: #463C6F;
+    background: linear-gradient(135deg, #6a4c9c, #463C6F); /* Gradient background */
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 50px; /* More rounded corners for a sleek look */
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease; /* Transition for smooth effect */
     margin-top: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for initial state */
+    font-family: 'Source Sans Pro', sans-serif;
+    animation: glowEffect 2s infinite alternate; /* Glowing effect in the stable state */
+}
+
+/* Glowing effect in stable state */
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 0 10px rgba(255, 255, 255, 0.4); /* Initial soft glow */
+    }
+    100% {
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1), 0 0 20px rgba(255, 255, 255, 0.6); /* Glowing effect */
+    }
+}
+
+/* Button Hover Effect */
+.build-button:hover {
+    transform: scale(1.1); /* Slightly larger on hover */
+    background: linear-gradient(135deg, #8b65a6, #5e4b8b); /* Lighter gradient on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Stronger shadow for elevated effect */
+}
+
+/* Add a glowing effect when the button is hovered */
+.build-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+}
+
+/* Button with glowing effect when hovered */
+.build-button:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Pulse effect on hover */
+@keyframes pulse {
+    0% {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        transform: scale(1.2);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .build-button:hover {
-    transform: scale(1.05);
+    animation: pulse 1.5s ease-in-out infinite;
 }
+
+/* Focus effect for accessibility */
+.build-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(102, 51, 153, 0.4); /* Focus ring for accessibility */
+}
+
+/* Active effect when clicked */
+.build-button:active {
+    transform: scale(0.98); /* Slight shrink effect when clicked */
+    background: linear-gradient(135deg, #462d6a, #5e4b8b); /* Darker gradient when clicked */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow when active */
+}
+
 
 /* ========== ABOUT US SECTION ========== */
 .about-us {
@@ -359,6 +434,7 @@ body {
       .scroll-top-btn:hover {
         background-color: #8A2BE2;
       }
+      
 
 @keyframes reversePlay {
     from {
