@@ -99,6 +99,7 @@ app.use('/intel', isAuthenticated, intelRouter);
 app.use('/amd', isAuthenticated, amdRouter);
 
 // Start server
-app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
