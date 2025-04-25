@@ -227,7 +227,72 @@
       font-size: 0.9rem;
       line-height: 1.6;
     }
-    
+/* Ensure nav is relatively positioned */
+.topbar {
+  position: relative;
+  background-color: #111; /* or your topbar background */
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* Responsive nav */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .elements {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 999;
+  }
+
+  .elements.show {
+    display: flex;
+  }
+
+  .elements span {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .flex-container-left {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .product-name {
+    margin-left: 20px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -239,15 +304,19 @@
             <h3>Build<span style="color: white;">-IT</span></h3>
           </a>
         </span>
-        <div class="elements flex-container-right">
-          <!-- <span class="txt-space centre-txt active">
-            <a href="/about">
-              <h3>About</h3>
-            </a>
-          </span> -->
-          <span class="txt-space centre-txt ">
-            <a  href="..">
-                <h3>Build your own PC</h3>
+  
+        <!-- Hamburger Icon -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+  
+        <!-- Navigation Links -->
+        <div class="elements flex-container-right" id="nav-menu">
+          <span class="txt-space centre-txt">
+            <a href="..">
+              <h3>Build your own PC</h3>
             </a>
           </span>
           <span class="txt-space centre-txt">
@@ -274,6 +343,7 @@
       </div>
     </nav>
   </header>
+  
 
   <section class="about-hero">
     <h1>About Build-IT</h1>
@@ -417,5 +487,14 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
+  <script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+</script>
+
 </body>
 </html>
